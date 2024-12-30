@@ -28,8 +28,7 @@ export const columns: ColumnDef<Task>[] = [
         className="flex items-center justify-center"
       />
     ),
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
   },
   {
     accessorKey: "id",
@@ -37,8 +36,7 @@ export const columns: ColumnDef<Task>[] = [
       <ReceiptTableColumnHeader column={column} title="ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
   },
   {
     accessorKey: "userId",
@@ -46,8 +44,7 @@ export const columns: ColumnDef<Task>[] = [
       <ReceiptTableColumnHeader column={column} title="User ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("userId")}</div>,
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
   },
   {
     accessorKey: "cashAmount",
@@ -57,8 +54,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => (
       <div className="w-[80px]">{row.getValue("cashAmount")}</div>
     ),
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
   },
   {
     accessorKey: "createdAt",
@@ -68,8 +64,7 @@ export const columns: ColumnDef<Task>[] = [
     cell: ({ row }) => (
       <div className="w-[80px]">{row.getValue("createdAt")}</div>
     ),
-    enableSorting: false,
-    enableHiding: false,
+    enableSorting: true,
   },
 
   {
