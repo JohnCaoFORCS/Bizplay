@@ -12,14 +12,14 @@ import {
 
 // We're keeping a simple non-relational schema here.
 // IRL, you will have a schema for your data models.
-export const taskSchema = z.object({
+export const receiptSchema = z.object({
   id: z.string(),
   userId: z.string(),
   createdAt: z.string(),
   cashAmount: z.number(),
 });
 
-export type Task = z.infer<typeof taskSchema>;
+export type Receipt = z.infer<typeof receiptSchema>;
 
 export const labels = [
   {

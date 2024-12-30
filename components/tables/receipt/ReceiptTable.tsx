@@ -27,8 +27,17 @@ import {
 import { ReceiptTablePagination } from "./ReceiptTablePagination";
 import { ReceiptTableToolbar } from "./ReceiptTableToolBar";
 import { receiptTableData } from "../mock-data/receipt-table-data";
-import { columns } from "./ReceiptTableColumns";
-import { Task } from "../mock-data/utils";
+import getReceiptTableColumns from "./ReceiptTableColumns";
+import { Receipt } from "../mock-data/utils";
+import type { ReceiptDialog } from "@/lib/type";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
+import DialogLayout from "@/components/dialogs/DialogLayout";
 
 export default function ReceiptTable() {
   const [rowSelection, setRowSelection] = useState({});
@@ -36,9 +45,13 @@ export default function ReceiptTable() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const table = useReactTable<Task>({
+  const [receiptDialog, setReceiptDialog] = useState<ReceiptDialog | undefined>(
+    undefined
+  );
+
+  const table = useReactTable<Receipt>({
     data: receiptTableData,
-    columns,
+    columns: getReceiptTableColumns(setReceiptDialog),
     state: {
       sorting,
       columnVisibility,
@@ -57,6 +70,8 @@ export default function ReceiptTable() {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
+
+  console.log(receiptDialog, "ob");
 
   return (
     <div className="space-y-4">
@@ -101,7 +116,7 @@ export default function ReceiptTable() {
             ) : (
               <TableRow>
                 <TableCell
-                  colSpan={columns.length}
+                  colSpan={table.getAllColumns().length}
                   className="h-24 text-center"
                 >
                   No results.

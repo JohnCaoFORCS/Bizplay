@@ -19,6 +19,13 @@ import {
 import { VIEW } from "@/lib/constants";
 import { getViewName } from "@/lib/utils";
 import { useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+} from "@/components/ui/dialog";
 
 export default function Page() {
   const [selectedView, setSelectedView] = useState(VIEW.RECEIPT_TABLE);

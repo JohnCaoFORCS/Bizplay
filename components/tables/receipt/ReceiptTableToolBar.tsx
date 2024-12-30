@@ -15,7 +15,6 @@ interface DataTableToolbarProps<TData> {
 export function ReceiptTableToolbar<TData>({
   table,
 }: DataTableToolbarProps<TData>) {
-  const isFiltered = table.getState().columnFilters.length > 0;
   const [search, setSearch] = useState("");
 
   useEffect(() => {
@@ -35,10 +34,10 @@ export function ReceiptTableToolbar<TData>({
           onChange={(event) => setSearch(event.target.value)}
           className="h-8 w-[150px] lg:w-[250px]"
         />
-        {isFiltered && (
+        {search && (
           <Button
-            variant="ghost"
-            onClick={() => table.resetColumnFilters()}
+            variant="outline"
+            onClick={() => setSearch("")}
             className="h-8 px-2 lg:px-3"
           >
             Reset
