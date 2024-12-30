@@ -26,6 +26,7 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import ResolutionTable from "@/components/tables/resolution/ResolutionTable";
 
 export default function Page() {
   const [selectedView, setSelectedView] = useState(VIEW.RECEIPT_TABLE);
@@ -68,10 +69,6 @@ export default function Page() {
       </SidebarInset>
     </SidebarProvider>
   );
-}
-
-function ResolutionTable() {
-  return <div>Resolution Table Content</div>;
 }
 
 function DefaultContent() {

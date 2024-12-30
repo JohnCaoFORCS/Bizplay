@@ -9,6 +9,7 @@ import {
   HelpCircle,
   Timer,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
 // We're keeping a simple non-relational schema here.
 // IRL, you will have a schema for your data models.
@@ -19,7 +20,18 @@ export const receiptSchema = z.object({
   cashAmount: z.number(),
 });
 
+export const resolutionSchema = z.object({
+  id: z.string(),
+  status: z.string(),
+  totalCash: z.number(),
+  userId: z.string(),
+  approverId: z.string(),
+  receiptId: z.string(),
+  createdAt: z.string(),
+});
+
 export type Receipt = z.infer<typeof receiptSchema>;
+export type Resolution = z.infer<typeof resolutionSchema>;
 
 export const labels = [
   {
@@ -81,3 +93,32 @@ export const priorities = [
     icon: ArrowUp,
   },
 ];
+
+export const getStatusBadge = (status: string) => {
+  switch (status) {
+    case "Completed":
+      return (
+        <Badge variant="outline" className="bg-green-500 text-white">
+          Completed
+        </Badge>
+      );
+    case "In Progress":
+      return (
+        <Badge variant="outline" className="bg-yellow-500 text-white">
+          In Progress
+        </Badge>
+      );
+    case "Rejected":
+      return (
+        <Badge variant="outline" className="bg-red-500 text-white">
+          Rejected
+        </Badge>
+      );
+    case "Draft":
+      return (
+        <Badge variant="outline" className="bg-gray-500 text-white">
+          Draft
+        </Badge>
+      );
+  }
+};

@@ -1,18 +1,24 @@
+"use client";
+
 import { DIALOG_TYPE } from "@/lib/constants";
 import DialogEditReceipt from "./DialogEditReceipt";
-import { Receipt } from "../tables/mock-data/utils";
+import { Receipt, Resolution } from "../tables/mock-data/utils";
 import { useEffect, useState } from "react";
 import DialogViewReceipt from "./DialogViewReceipt";
+import DialogEditResolution from "./resolution/DialogEditResolution";
+import DialogViewResolution from "./resolution/DialogViewResolution";
 
 type DialogLayoutProps = {
   type: DIALOG_TYPE;
   receipt?: Receipt;
+  resolution?: Resolution;
   handleOnClose: () => void;
 };
 
 export default function DialogLayout({
   type,
   receipt,
+  resolution,
   handleOnClose,
 }: DialogLayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
@@ -24,6 +30,14 @@ export default function DialogLayout({
       setIsOpen(false);
     }
   }, [receipt]);
+
+  useEffect(() => {
+    if (resolution) {
+      setIsOpen(true);
+    } else {
+      setIsOpen(false);
+    }
+  }, [resolution]);
 
   switch (type) {
     case DIALOG_TYPE.RECEIPT_EDIT:
@@ -41,6 +55,26 @@ export default function DialogLayout({
         <DialogViewReceipt
           isOpen={isOpen}
           receipt={receipt}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.RESOLUTION_EDIT:
+      return resolution ? (
+        <DialogEditResolution
+          isOpen={isOpen}
+          resolution={resolution}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.RESOLUTION_VIEW:
+      return resolution ? (
+        <DialogViewResolution
+          isOpen={isOpen}
+          resolution={resolution}
           handleOnClose={handleOnClose}
         />
       ) : (

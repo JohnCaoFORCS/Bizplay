@@ -10,4 +10,6 @@ export enum VIEW {
 export enum DIALOG_TYPE {
   RECEIPT_EDIT = "receipt-edit",
   RECEIPT_VIEW = "receipt-view",
+  RESOLUTION_EDIT = "resolution-edit",
+  RESOLUTION_VIEW = "resolution-view",
 }
