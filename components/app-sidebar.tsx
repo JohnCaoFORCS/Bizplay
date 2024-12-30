@@ -1,6 +1,6 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
   BookOpen,
@@ -12,42 +12,43 @@ import {
   PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavProjects } from "@/components/nav-projects";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { CompanySwitcher } from "./company-switcher";
 
 // This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Admin",
+    email: "admin@forcs.com",
+    avatar:
+      "https://lh3.googleusercontent.com/a-/ALV-UjWSafVgPfN2XYnhgAk3o0TrOHlwhqxMeXLndBwqjzi6yw697evW=s32-w32-h32-c-k-no",
   },
-  teams: [
+  companies: [
     {
-      name: "Acme Inc",
+      name: "FORCS",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "FORCS",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Enterprise",
     },
     {
-      name: "Evil Corp.",
+      name: "FORCS",
       logo: Command,
-      plan: "Free",
+      plan: "Enterprise",
     },
   ],
   navMain: [
@@ -154,13 +155,13 @@ const data = {
       icon: Map,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <CompanySwitcher companies={data.companies} />
       </SidebarHeader>
       <SidebarContent>
         <NavMain items={data.navMain} />
@@ -171,5 +172,5 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }
