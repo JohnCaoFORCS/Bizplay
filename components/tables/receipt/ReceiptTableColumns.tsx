@@ -1,14 +1,10 @@
 "use client";
 
 import { ColumnDef } from "@tanstack/react-table";
-
-import { Badge } from "@/components/ui/badge";
 import { Checkbox } from "@/components/ui/checkbox";
-
 import { ReceiptTableColumnHeader } from "./ReceiptTableColumnHeader";
 import { ReceiptTableRowActions } from "./ReceiptTableRowActions";
-import { labels, priorities, statuses } from "@/lib/utils";
-import { Task } from "@/lib/utils";
+import { Task } from "@/components/tables/mock-data/utils";
 
 export const columns: ColumnDef<Task>[] = [
   {
@@ -21,7 +17,7 @@ export const columns: ColumnDef<Task>[] = [
         }
         onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
         aria-label="Select all"
-        className="translate-y-[2px]"
+        className="flex items-center justify-center"
       />
     ),
     cell: ({ row }) => (
@@ -29,7 +25,7 @@ export const columns: ColumnDef<Task>[] = [
         checked={row.getIsSelected()}
         onCheckedChange={(value) => row.toggleSelected(!!value)}
         aria-label="Select row"
-        className="translate-y-[2px]"
+        className="flex items-center justify-center"
       />
     ),
     enableSorting: false,
@@ -38,86 +34,46 @@ export const columns: ColumnDef<Task>[] = [
   {
     accessorKey: "id",
     header: ({ column }) => (
-      <ReceiptTableColumnHeader column={column} title="Task" />
+      <ReceiptTableColumnHeader column={column} title="ID" />
     ),
     cell: ({ row }) => <div className="w-[80px]">{row.getValue("id")}</div>,
     enableSorting: false,
     enableHiding: false,
   },
   {
-    accessorKey: "title",
+    accessorKey: "userId",
     header: ({ column }) => (
-      <ReceiptTableColumnHeader column={column} title="Title" />
+      <ReceiptTableColumnHeader column={column} title="User ID" />
     ),
-    cell: ({ row }) => {
-      const label = labels.find((label) => label.value === row.original.label);
-
-      return (
-        <div className="flex space-x-2">
-          {label && <Badge variant="outline">{label.label}</Badge>}
-          <span className="max-w-[500px] truncate font-medium">
-            {row.getValue("title")}
-          </span>
-        </div>
-      );
-    },
+    cell: ({ row }) => <div className="w-[80px]">{row.getValue("userId")}</div>,
+    enableSorting: false,
+    enableHiding: false,
   },
   {
-    accessorKey: "status",
+    accessorKey: "cashAmount",
     header: ({ column }) => (
-      <ReceiptTableColumnHeader column={column} title="Status" />
+      <ReceiptTableColumnHeader column={column} title="Cash Amount" />
     ),
-    cell: ({ row }) => {
-      const status = statuses.find(
-        (status) => status.value === row.getValue("status")
-      );
-
-      if (!status) {
-        return null;
-      }
-
-      return (
-        <div className="flex w-[100px] items-center">
-          {status.icon && (
-            <status.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{status.label}</span>
-        </div>
-      );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("cashAmount")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
   },
   {
-    accessorKey: "priority",
+    accessorKey: "createdAt",
     header: ({ column }) => (
-      <ReceiptTableColumnHeader column={column} title="Priority" />
+      <ReceiptTableColumnHeader column={column} title="Created At" />
     ),
-    cell: ({ row }) => {
-      const priority = priorities.find(
-        (priority) => priority.value === row.getValue("priority")
-      );
-
-      if (!priority) {
-        return null;
-      }
-
-      return (
-        <div className="flex items-center">
-          {priority.icon && (
-            <priority.icon className="mr-2 h-4 w-4 text-muted-foreground" />
-          )}
-          <span>{priority.label}</span>
-        </div>
-      );
-    },
-    filterFn: (row, id, value) => {
-      return value.includes(row.getValue(id));
-    },
+    cell: ({ row }) => (
+      <div className="w-[80px]">{row.getValue("createdAt")}</div>
+    ),
+    enableSorting: false,
+    enableHiding: false,
   },
+
   {
     id: "actions",
-    cell: ({ row }) => <ReceiptTableRowActions row={row} />,
+    cell: () => <ReceiptTableRowActions />,
   },
 ];

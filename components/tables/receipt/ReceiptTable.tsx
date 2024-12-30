@@ -28,6 +28,7 @@ import { ReceiptTablePagination } from "./ReceiptTablePagination";
 import { ReceiptTableToolbar } from "./ReceiptTableToolBar";
 import { receiptTableData } from "../mock-data/receipt-table-data";
 import { columns } from "./ReceiptTableColumns";
+import { Task } from "../mock-data/utils";
 
 export default function ReceiptTable() {
   const [rowSelection, setRowSelection] = useState({});
@@ -35,7 +36,7 @@ export default function ReceiptTable() {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
   const [sorting, setSorting] = useState<SortingState>([]);
 
-  const table = useReactTable({
+  const table = useReactTable<Task>({
     data: receiptTableData,
     columns,
     state: {

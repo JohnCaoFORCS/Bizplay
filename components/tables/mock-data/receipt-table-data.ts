@@ -1,65 +1,63 @@
-export const receiptTableData = [
+import { Task } from "./utils";
+
+function generateRandomString(length = 10) {
+  const characters =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let result = "";
+  const charactersLength = characters.length;
+  for (let i = 0; i < length; i++) {
+    result += characters.charAt(Math.floor(Math.random() * charactersLength));
+  }
+  return result;
+}
+
+export const receiptTableData: Task[] = [
   {
-    id: "TASK-8782",
-    title:
-      "You can't compress the program without quantifying the open-source SSD pixel!",
-    status: "in progress",
-    label: "documentation",
-    priority: "medium",
+    id: generateRandomString(),
+    userId: "1",
+    createdAt: "2024-01-01",
+    cashAmount: 100000,
   },
   {
-    id: "TASK-7878",
-    title:
-      "Try to calculate the EXE feed, maybe it will index the multi-byte pixel!",
-    status: "backlog",
-    label: "documentation",
-    priority: "medium",
+    id: generateRandomString(),
+    userId: "2",
+    createdAt: "2024-02-28",
+    cashAmount: 200000,
   },
   {
-    id: "TASK-7839",
-    title: "We need to bypass the neural TCP card!",
-    status: "todo",
-    label: "bug",
-    priority: "high",
+    id: generateRandomString(),
+    userId: "3",
+    createdAt: "2024-04-30",
+    cashAmount: 300000,
   },
   {
-    id: "TASK-5562",
-    title:
-      "The SAS interface is down, bypass the open-source pixel so we can back up the PNG bandwidth!",
-    status: "backlog",
-    label: "feature",
-    priority: "medium",
+    id: generateRandomString(),
+    userId: "4",
+    createdAt: "2024-02-01",
+    cashAmount: 400000,
   },
   {
-    id: "TASK-8686",
-    title:
-      "I'll parse the wireless SSL protocol, that should driver the API panel!",
-    status: "canceled",
-    label: "feature",
-    priority: "medium",
+    id: generateRandomString(),
+    userId: "5",
+    createdAt: "2024-04-21",
+    cashAmount: 500000,
   },
   {
-    id: "TASK-1280",
-    title:
-      "Use the digital TLS panel, then you can transmit the haptic system!",
-    status: "done",
-    label: "bug",
-    priority: "high",
+    id: generateRandomString(),
+    userId: "6",
+    createdAt: "2024-11-01",
+    cashAmount: 600000,
   },
   {
-    id: "TASK-7262",
-    title:
-      "The UTF8 application is down, parse the neural bandwidth so we can back up the PNG firewall!",
-    status: "done",
-    label: "feature",
-    priority: "high",
+    id: generateRandomString(),
+    userId: "7",
+    createdAt: "2024-12-29",
+    cashAmount: 600000,
   },
   {
-    id: "TASK-1138",
-    title:
-      "Generating the driver won't do anything, we need to quantify the 1080p SMTP bandwidth!",
-    status: "in progress",
-    label: "feature",
-    priority: "medium",
+    id: generateRandomString(),
+    userId: "8",
+    createdAt: "2024-07-04",
+    cashAmount: 700000,
   },
 ];
