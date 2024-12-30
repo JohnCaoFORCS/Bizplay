@@ -1,175 +1,115 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 import {
   AudioWaveform,
-  BookOpen,
-  Bot,
   Command,
-  Frame,
   GalleryVerticalEnd,
-  Map,
-  PieChart,
   Settings2,
   SquareTerminal,
-} from "lucide-react"
+} from "lucide-react";
 
-import { NavMain } from "@/components/nav-main"
-import { NavProjects } from "@/components/nav-projects"
-import { NavUser } from "@/components/nav-user"
-import { TeamSwitcher } from "@/components/team-switcher"
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
   SidebarContent,
   SidebarFooter,
   SidebarHeader,
   SidebarRail,
-} from "@/components/ui/sidebar"
+} from "@/components/ui/sidebar";
+import { CompanySwitcher } from "./company-switcher";
+import { VIEW } from "@/lib/constants";
 
-// This is sample data.
 const data = {
   user: {
-    name: "shadcn",
-    email: "m@example.com",
-    avatar: "/avatars/shadcn.jpg",
+    name: "Admin",
+    email: "admin@forcs.com",
+    avatar:
+      "https://lh3.googleusercontent.com/a-/ALV-UjWSafVgPfN2XYnhgAk3o0TrOHlwhqxMeXLndBwqjzi6yw697evW=s32-w32-h32-c-k-no",
   },
-  teams: [
+  companies: [
     {
-      name: "Acme Inc",
+      name: "FORCS",
       logo: GalleryVerticalEnd,
       plan: "Enterprise",
     },
     {
-      name: "Acme Corp.",
+      name: "FORCS",
       logo: AudioWaveform,
-      plan: "Startup",
+      plan: "Enterprise",
     },
     {
-      name: "Evil Corp.",
+      name: "FORCS",
       logo: Command,
-      plan: "Free",
+      plan: "Enterprise",
     },
   ],
   navMain: [
     {
-      title: "Playground",
-      url: "#",
+      title: "Tables",
+      view: VIEW.RECEIPT_TABLE,
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
-          title: "History",
-          url: "#",
+          title: "Receipt Table",
+          view: VIEW.RECEIPT_TABLE,
         },
         {
-          title: "Starred",
-          url: "#",
-        },
-        {
-          title: "Settings",
-          url: "#",
+          title: "Resolution Table",
+          view: VIEW.RESOLUTION_TABLE,
         },
       ],
     },
     {
-      title: "Models",
-      url: "#",
-      icon: Bot,
-      items: [
-        {
-          title: "Genesis",
-          url: "#",
-        },
-        {
-          title: "Explorer",
-          url: "#",
-        },
-        {
-          title: "Quantum",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Documentation",
-      url: "#",
-      icon: BookOpen,
-      items: [
-        {
-          title: "Introduction",
-          url: "#",
-        },
-        {
-          title: "Get Started",
-          url: "#",
-        },
-        {
-          title: "Tutorials",
-          url: "#",
-        },
-        {
-          title: "Changelog",
-          url: "#",
-        },
-      ],
-    },
-    {
-      title: "Settings",
-      url: "#",
+      title: "Management",
+      view: VIEW.MANAGE_DEPARTMENTS,
       icon: Settings2,
       items: [
         {
-          title: "General",
-          url: "#",
+          title: "Manage Departments",
+          view: VIEW.MANAGE_DEPARTMENTS,
         },
         {
-          title: "Team",
-          url: "#",
+          title: "Manage Userss",
+          view: VIEW.MANAGE_USERS,
         },
         {
-          title: "Billing",
-          url: "#",
+          title: "Manage Cards",
+          view: VIEW.MANAGE_CARDS,
         },
         {
-          title: "Limits",
-          url: "#",
+          title: "Manage Receipts",
+          view: VIEW.MANAGE_RECEIPTS,
         },
       ],
     },
   ],
-  projects: [
-    {
-      name: "Design Engineering",
-      url: "#",
-      icon: Frame,
-    },
-    {
-      name: "Sales & Marketing",
-      url: "#",
-      icon: PieChart,
-    },
-    {
-      name: "Travel",
-      url: "#",
-      icon: Map,
-    },
-  ],
-}
+};
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  setSelectedView,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  setSelectedView: (view: VIEW) => void;
+}) {
+  const handleViewChange = (view: VIEW) => {
+    setSelectedView(view);
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
-        <TeamSwitcher teams={data.teams} />
+        <CompanySwitcher companies={data.companies} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
-        <NavProjects projects={data.projects} />
+        <NavMain items={data.navMain} handleViewChange={handleViewChange} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
       <SidebarRail />
     </Sidebar>
-  )
+  );
 }

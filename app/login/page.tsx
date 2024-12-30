@@ -51,7 +51,7 @@ export default function Page() {
                 <Input
                   id="email"
                   type="email"
-                  placeholder="m@example.com"
+                  placeholder="admin@forcs.com"
                   required
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
