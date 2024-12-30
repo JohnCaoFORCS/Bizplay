@@ -16,21 +16,23 @@ import {
   SidebarMenuSubButton,
   SidebarMenuSubItem,
 } from "@/components/ui/sidebar";
+import { VIEW } from "@/lib/constants";
 
-export function NavMain({
-  items,
-}: {
+type NavMainProps = {
   items: {
     title: string;
-    url: string;
+    view: VIEW;
     icon?: LucideIcon;
     isActive?: boolean;
     items?: {
       title: string;
-      url: string;
+      view: VIEW;
     }[];
   }[];
-}) {
+  handleViewChange: (view: VIEW) => void;
+};
+
+export function NavMain({ items, handleViewChange }: NavMainProps) {
   return (
     <SidebarGroup>
       <SidebarMenu>
@@ -53,10 +55,11 @@ export function NavMain({
                 <SidebarMenuSub>
                   {item.items?.map((subItem) => (
                     <SidebarMenuSubItem key={subItem.title}>
-                      <SidebarMenuSubButton asChild>
-                        <a href={subItem.url}>
-                          <span>{subItem.title}</span>
-                        </a>
+                      <SidebarMenuSubButton
+                        asChild
+                        onClick={() => handleViewChange(subItem.view)}
+                      >
+                        <span>{subItem.title}</span>
                       </SidebarMenuSubButton>
                     </SidebarMenuSubItem>
                   ))}

@@ -19,6 +19,7 @@ import {
   SidebarRail,
 } from "@/components/ui/sidebar";
 import { CompanySwitcher } from "./company-switcher";
+import { VIEW } from "@/lib/constants";
 
 const data = {
   user: {
@@ -47,54 +48,63 @@ const data = {
   navMain: [
     {
       title: "Tables",
-      url: "#",
+      view: VIEW.RECEIPT_TABLE,
       icon: SquareTerminal,
       isActive: true,
       items: [
         {
           title: "Receipt Table",
-          url: "#",
+          view: VIEW.RECEIPT_TABLE,
         },
         {
           title: "Resolution Table",
-          url: "#",
+          view: VIEW.RESOLUTION_TABLE,
         },
       ],
     },
     {
       title: "Management",
-      url: "#",
+      view: VIEW.MANAGE_DEPARTMENTS,
       icon: Settings2,
       items: [
         {
           title: "Manage Departments",
-          url: "#",
+          view: VIEW.MANAGE_DEPARTMENTS,
         },
         {
           title: "Manage Userss",
-          url: "#",
+          view: VIEW.MANAGE_USERS,
         },
         {
           title: "Manage Cards",
-          url: "#",
+          view: VIEW.MANAGE_CARDS,
         },
         {
           title: "Manage Receipts",
-          url: "#",
+          view: VIEW.MANAGE_RECEIPTS,
         },
       ],
     },
   ],
 };
 
-export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
+export function AppSidebar({
+  setSelectedView,
+  ...props
+}: React.ComponentProps<typeof Sidebar> & {
+  setSelectedView: (view: VIEW) => void;
+}) {
+  const handleViewChange = (view: VIEW) => {
+    setSelectedView(view);
+  };
+
   return (
     <Sidebar collapsible="icon" {...props}>
       <SidebarHeader>
         <CompanySwitcher companies={data.companies} />
       </SidebarHeader>
       <SidebarContent>
-        <NavMain items={data.navMain} />
+        <NavMain items={data.navMain} handleViewChange={handleViewChange} />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
