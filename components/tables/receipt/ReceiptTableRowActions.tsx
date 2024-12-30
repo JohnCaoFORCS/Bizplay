@@ -11,8 +11,28 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import { Receipt } from "../mock-data/utils";
+import { ReceiptDialog } from "@/lib/type";
+import { DIALOG_TYPE } from "@/lib/constants";
 
-export function ReceiptTableRowActions() {
+type ReceiptTableRowActionsProps = {
+  row: any;
+  handleOpenDialog: (receiptDialog: ReceiptDialog | undefined) => void;
+};
+
+export function ReceiptTableRowActions({
+  row,
+  handleOpenDialog,
+}: ReceiptTableRowActionsProps) {
+  const receipt: Receipt = row.original;
+
+  const handleEditReceipt = () => {
+    handleOpenDialog({
+      type: DIALOG_TYPE.RECEIPT_EDIT,
+      receipt: receipt,
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -25,9 +45,8 @@ export function ReceiptTableRowActions() {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem>Edit</DropdownMenuItem>
-        <DropdownMenuItem>Make a copy</DropdownMenuItem>
-        <DropdownMenuItem>Favorite</DropdownMenuItem>
+        <DropdownMenuItem onSelect={handleEditReceipt}>Edit</DropdownMenuItem>
+        <DropdownMenuItem>View</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete

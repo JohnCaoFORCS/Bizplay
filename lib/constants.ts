@@ -6,3 +6,8 @@ export enum VIEW {
   MANAGE_CARDS = "manage-cards",
   MANAGE_RECEIPTS = "manage-receipts",
 }
+
+export enum DIALOG_TYPE {
+  RECEIPT_EDIT = "receipt-edit",
+  RECEIPT_CREATE = "receipt-create",
+}

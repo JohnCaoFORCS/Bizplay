@@ -24,7 +24,8 @@ export default function Page() {
     },
   ];
 
-  const handleLogin = () => {
+  const handleLogin = (e: any) => {
+    e.preventDefault();
     const account = accounts.find((account) => account.email === email);
     if (account && account.password === password) {
       router.push("/dashboard");
@@ -75,7 +76,7 @@ export default function Page() {
                   onChange={(e) => setPassword(e.target.value)}
                 />
               </div>
-              <Button type="submit" className="w-full" onClick={handleLogin}>
+              <Button className="w-full" onClick={(e) => handleLogin(e)}>
                 Login
               </Button>
             </div>

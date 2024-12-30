@@ -1,6 +1,6 @@
-import { Task } from "./utils";
+import { Receipt } from "./utils";
 
-export const receiptTableData: Task[] = [
+export const receiptTableData: Receipt[] = [
   {
     id: "A1B2C3D4E5",
     userId: "1",
