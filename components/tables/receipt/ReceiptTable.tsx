@@ -127,16 +127,6 @@ export default function ReceiptTable() {
         </Table>
       </div>
       <ReceiptTablePagination table={table} />
-      <Dialog>
-        <DialogContent>
-          <DialogHeader>
-            <DialogTitle>Edit receipt</DialogTitle>
-            <DialogDescription>
-              Please edit the receipt details below.
-            </DialogDescription>
-          </DialogHeader>
-        </DialogContent>
-      </Dialog>
     </div>
   );
 }
