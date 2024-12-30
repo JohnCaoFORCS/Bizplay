@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   ColumnFiltersState,
   SortingState,
@@ -30,13 +30,6 @@ import { receiptTableData } from "../mock-data/receipt-table-data";
 import getReceiptTableColumns from "./ReceiptTableColumns";
 import { Receipt } from "../mock-data/utils";
 import type { ReceiptDialog } from "@/lib/type";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import DialogLayout from "@/components/dialogs/DialogLayout";
 
 export default function ReceiptTable() {
@@ -70,8 +63,6 @@ export default function ReceiptTable() {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
-
-  console.log(receiptDialog, "ob");
 
   return (
     <div className="space-y-4">
@@ -127,6 +118,13 @@ export default function ReceiptTable() {
         </Table>
       </div>
       <ReceiptTablePagination table={table} />
+      {receiptDialog && (
+        <DialogLayout
+          type={receiptDialog.type}
+          receipt={receiptDialog.receipt}
+          handleOnClose={() => setReceiptDialog(undefined)}
+        />
+      )}
     </div>
   );
 }

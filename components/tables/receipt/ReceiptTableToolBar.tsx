@@ -27,25 +27,16 @@ export function ReceiptTableToolbar<TData>({
 
   return (
     <div className="flex items-center justify-between">
-      <div className="flex flex-1 items-center space-x-2">
+      <ReceiptTableViewOptions table={table} />
+
+      <div className="flex items-center space-x-2">
         <Input
           placeholder="Filter receipts..."
           value={search}
           onChange={(event) => setSearch(event.target.value)}
-          className="h-8 w-[150px] lg:w-[250px]"
+          className="h-8 w-[400px]"
         />
-        {search && (
-          <Button
-            variant="outline"
-            onClick={() => setSearch("")}
-            className="h-8 px-2 lg:px-3"
-          >
-            Reset
-            <X />
-          </Button>
-        )}
       </div>
-      <ReceiptTableViewOptions table={table} />
     </div>
   );
 }

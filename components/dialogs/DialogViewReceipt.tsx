@@ -11,38 +11,25 @@ import { Receipt } from "../tables/mock-data/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
-import { useEffect, useState } from "react";
 
-type DialogEditReceiptProps = {
+type DialogViewReceiptProps = {
   isOpen: boolean;
   receipt: Receipt;
   handleOnClose: () => void;
 };
 
-export default function DialogEditReceipt({
+export default function DialogViewReceipt({
   isOpen,
   receipt,
   handleOnClose,
-}: DialogEditReceiptProps) {
-  const [cashAmount, setCashAmount] = useState(receipt.cashAmount);
-  const [createdAt, setCreatedAt] = useState(receipt.createdAt);
-
-  useEffect(() => {
-    setCashAmount(receipt.cashAmount);
-    setCreatedAt(receipt.createdAt);
-  }, [receipt.id]);
-
-  const handleSave = () => {
-    console.log(cashAmount, "cashAmount");
-  };
-
+}: DialogViewReceiptProps) {
   return (
     <Dialog open={isOpen}>
       <DialogContent className="[&>button]:hidden">
         <DialogHeader>
-          <DialogTitle>Edit receipt</DialogTitle>
+          <DialogTitle>View receipt</DialogTitle>
           <DialogDescription>
-            Please edit the receipt details below.
+            Receipt details are displayed below.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -50,22 +37,17 @@ export default function DialogEditReceipt({
             <Label htmlFor="id" className="text-right">
               Id
             </Label>
-            <Input
-              disabled={true}
-              id="id"
-              value={receipt.id}
-              className="col-span-3"
-            />
+            <Input id="id" className="col-span-3" value={receipt.id} readOnly />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
             <Label htmlFor="userId" className="text-right">
               User Id
             </Label>
             <Input
-              disabled={true}
               id="userId"
-              value={receipt.userId}
               className="col-span-3"
+              value={receipt.userId}
+              readOnly
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -74,10 +56,9 @@ export default function DialogEditReceipt({
             </Label>
             <Input
               id="cashAmount"
-              value={cashAmount}
               className="col-span-3"
-              type="number"
-              onChange={(e) => setCashAmount(Number(e.target.value))}
+              value={receipt.cashAmount}
+              readOnly
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
@@ -86,19 +67,15 @@ export default function DialogEditReceipt({
             </Label>
             <Input
               id="createdAt"
-              value={createdAt}
               className="col-span-3"
-              type="date"
-              onChange={(e) => setCreatedAt(e.target.value)}
+              value={receipt.createdAt}
+              readOnly
             />
           </div>
         </div>
         <DialogFooter>
           <Button type="button" variant="outline" onClick={handleOnClose}>
-            Cancel
-          </Button>
-          <Button onClick={handleOnClose} type="submit">
-            Save changes
+            Close
           </Button>
         </DialogFooter>
       </DialogContent>

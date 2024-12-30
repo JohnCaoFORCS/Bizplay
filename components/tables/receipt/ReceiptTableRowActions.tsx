@@ -33,6 +33,13 @@ export function ReceiptTableRowActions({
     });
   };
 
+  const handleViewReceipt = () => {
+    handleOpenDialog({
+      type: DIALOG_TYPE.RECEIPT_VIEW,
+      receipt: receipt,
+    });
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -46,7 +53,7 @@ export function ReceiptTableRowActions({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem onSelect={handleEditReceipt}>Edit</DropdownMenuItem>
-        <DropdownMenuItem>View</DropdownMenuItem>
+        <DropdownMenuItem onSelect={handleViewReceipt}>View</DropdownMenuItem>
         <DropdownMenuSeparator />
         <DropdownMenuItem>
           Delete

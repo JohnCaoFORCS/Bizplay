@@ -13,6 +13,9 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
+import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import DialogViewReceipt from "@/components/dialogs/DialogViewReceipt";
+import DialogAddReceipt from "@/components/dialogs/DialogAddReceipt";
 
 interface ReceiptTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -57,6 +60,15 @@ export function ReceiptTableViewOptions<TData>({
             })}
         </DropdownMenuContent>
       </DropdownMenu>
+      <Dialog>
+        <DialogTrigger>
+          <Button className="h-8" variant="outline">
+            New receipt
+          </Button>
+        </DialogTrigger>
+        <DialogAddReceipt />
+        <Dialog />
+      </Dialog>
     </div>
   );
 }
