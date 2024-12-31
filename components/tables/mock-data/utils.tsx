@@ -30,8 +30,15 @@ export const resolutionSchema = z.object({
   createdAt: z.string(),
 });
 
+export const departmentSchema = z.object({
+  id: z.string(),
+  name: z.string(),
+  companyId: z.string(),
+});
+
 export type Receipt = z.infer<typeof receiptSchema>;
 export type Resolution = z.infer<typeof resolutionSchema>;
+export type Department = z.infer<typeof departmentSchema>;
 
 export const labels = [
   {

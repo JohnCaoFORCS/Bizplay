@@ -19,14 +19,8 @@ import {
 import { VIEW } from "@/lib/constants";
 import { getViewName } from "@/lib/utils";
 import { useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogHeader,
-  DialogTitle,
-} from "@/components/ui/dialog";
 import ResolutionTable from "@/components/tables/resolution/ResolutionTable";
+import DepartmentTable from "@/components/tables/department/DepartmentTable";
 
 export default function Page() {
   const [selectedView, setSelectedView] = useState(VIEW.RECEIPT_TABLE);
@@ -37,6 +31,8 @@ export default function Page() {
         return <ReceiptTable />;
       case VIEW.RESOLUTION_TABLE:
         return <ResolutionTable />;
+      case VIEW.MANAGE_DEPARTMENTS:
+        return <DepartmentTable />;
       default:
         return <DefaultContent />;
     }

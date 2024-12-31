@@ -2,7 +2,7 @@
 
 import { DIALOG_TYPE } from "@/lib/constants";
 import DialogEditReceipt from "./DialogEditReceipt";
-import { Receipt, Resolution } from "../tables/mock-data/utils";
+import { Department, Receipt, Resolution } from "../tables/mock-data/utils";
 import { useEffect, useState } from "react";
 import DialogViewReceipt from "./DialogViewReceipt";
 import DialogEditResolution from "./resolution/DialogEditResolution";
@@ -12,6 +12,7 @@ type DialogLayoutProps = {
   type: DIALOG_TYPE;
   receipt?: Receipt;
   resolution?: Resolution;
+  department?: Department;
   handleOnClose: () => void;
 };
 
@@ -19,25 +20,18 @@ export default function DialogLayout({
   type,
   receipt,
   resolution,
+  department,
   handleOnClose,
 }: DialogLayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (receipt) {
+    if (receipt || department || resolution) {
       setIsOpen(true);
     } else {
       setIsOpen(false);
     }
-  }, [receipt]);
-
-  useEffect(() => {
-    if (resolution) {
-      setIsOpen(true);
-    } else {
-      setIsOpen(false);
-    }
-  }, [resolution]);
+  }, [receipt, department, resolution]);
 
   switch (type) {
     case DIALOG_TYPE.RECEIPT_EDIT:

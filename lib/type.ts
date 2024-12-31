@@ -10,3 +10,8 @@ export type ResolutionDialog = {
   type: DIALOG_TYPE;
   resolution: Resolution;
 };
+
+export type DepartmentDialog = {
+  type: DIALOG_TYPE;
+  department: Department;
+};

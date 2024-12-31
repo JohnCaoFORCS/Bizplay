@@ -1,4 +1,4 @@
-import { Receipt, Resolution } from "./utils";
+import { Resolution } from "./utils";
 
 export const resolutionTableData: Resolution[] = [
   {

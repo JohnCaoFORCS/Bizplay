@@ -72,7 +72,7 @@ const data = {
           view: VIEW.MANAGE_DEPARTMENTS,
         },
         {
-          title: "Manage Userss",
+          title: "Manage Users",
           view: VIEW.MANAGE_USERS,
         },
         {
