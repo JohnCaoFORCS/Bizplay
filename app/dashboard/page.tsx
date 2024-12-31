@@ -21,7 +21,8 @@ import { getViewName } from "@/lib/utils";
 import { useState } from "react";
 import ResolutionTable from "@/components/tables/resolution/ResolutionTable";
 import DepartmentTable from "@/components/tables/department/DepartmentTable";
-import UserTable from "@/components/tables/user/USerTable";
+import UserTable from "@/components/tables/user/UserTable";
+import CardTable from "@/components/tables/card/CardTable";
 
 export default function Page() {
   const [selectedView, setSelectedView] = useState(VIEW.RECEIPT_TABLE);
@@ -36,6 +37,8 @@ export default function Page() {
         return <DepartmentTable />;
       case VIEW.MANAGE_USERS:
         return <UserTable />;
+      case VIEW.MANAGE_CARDS:
+        return <CardTable />;
       default:
         return <DefaultContent />;
     }

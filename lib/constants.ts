@@ -16,4 +16,6 @@ export enum DIALOG_TYPE {
   DEPARTMENT_VIEW = "department-view",
   USER_EDIT = "user-edit",
   USER_VIEW = "user-view",
+  CARD_EDIT = "card-edit",
+  CARD_VIEW = "card-view",
 }

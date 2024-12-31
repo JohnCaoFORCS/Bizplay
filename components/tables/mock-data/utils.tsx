@@ -49,6 +49,14 @@ export const userSchema = z.object({
   email: z.string(),
 });
 
+export const cardSchema = z.object({
+  id: z.string(),
+  cardNumber: z.string(),
+  validationDate: z.string(),
+});
+
+export type Card = z.infer<typeof cardSchema>;
+
 export type Receipt = z.infer<typeof receiptSchema>;
 export type Resolution = z.infer<typeof resolutionSchema>;
 export type Department = z.infer<typeof departmentSchema>;
