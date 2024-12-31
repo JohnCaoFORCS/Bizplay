@@ -1,4 +1,6 @@
 import {
+  Card,
+  Company,
   Department,
   Receipt,
   Resolution,
@@ -24,4 +26,14 @@ export type DepartmentDialog = {
 export type UserDialog = {
   type: DIALOG_TYPE;
   user: User;
+};
+
+export type CardDialog = {
+  type: DIALOG_TYPE;
+  card: Card;
+};
+
+export type CompanyDialog = {
+  type: DIALOG_TYPE;
+  company: Company;
 };

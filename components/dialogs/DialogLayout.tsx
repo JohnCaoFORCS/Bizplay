@@ -4,6 +4,7 @@ import { DIALOG_TYPE } from "@/lib/constants";
 import DialogEditReceipt from "./receipt/DialogEditReceipt";
 import {
   Card,
+  Company,
   Department,
   Receipt,
   Resolution,
@@ -19,6 +20,8 @@ import DialogEditUser from "./user/DialogEditUser";
 import DialogViewUser from "./user/DialogViewUser";
 import DialogEditCard from "./card/DialogEditCard";
 import DialogViewCard from "./card/DialogViewCard";
+import DialogEditCompany from "./company/DialogEditCompany";
+import DialogViewCompany from "./company/DialogViewCompany";
 
 type DialogLayoutProps = {
   type: DIALOG_TYPE;
@@ -27,6 +30,7 @@ type DialogLayoutProps = {
   department?: Department;
   user?: User;
   card?: Card;
+  company?: Company;
   handleOnClose: () => void;
 };
 
@@ -37,17 +41,18 @@ export default function DialogLayout({
   department,
   user,
   card,
+  company,
   handleOnClose,
 }: DialogLayoutProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (receipt || department || resolution || user || card) {
+    if (receipt || department || resolution || user || card || company) {
       setIsOpen(true);
     } else {
       setIsOpen(false);
     }
-  }, [receipt, department, resolution, user, card]);
+  }, [receipt, department, resolution, user, card, company]);
 
   switch (type) {
     case DIALOG_TYPE.RECEIPT_EDIT:
@@ -145,6 +150,26 @@ export default function DialogLayout({
         <DialogViewCard
           isOpen={isOpen}
           card={card}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.COMPANY_EDIT:
+      return company ? (
+        <DialogEditCompany
+          isOpen={isOpen}
+          company={company}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.COMPANY_VIEW:
+      return company ? (
+        <DialogViewCompany
+          isOpen={isOpen}
+          company={company}
           handleOnClose={handleOnClose}
         />
       ) : (

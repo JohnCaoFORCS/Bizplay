@@ -20,6 +20,8 @@ export function getViewName(view: VIEW) {
       return "Manage Cards";
     case VIEW.MANAGE_RECEIPTS:
       return "Manage Receipts";
+    case VIEW.MANAGE_COMPANIES:
+      return "Manage Companies";
   }
 }
 

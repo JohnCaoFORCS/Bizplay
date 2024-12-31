@@ -49,7 +49,7 @@ const data = {
     {
       title: "User",
       view: VIEW.RECEIPT_TABLE,
-      icon: SquareTerminal,
+      icon: Settings2,
       isActive: true,
       items: [
         {
@@ -83,11 +83,15 @@ const data = {
           title: "Manage Receipts",
           view: VIEW.MANAGE_RECEIPTS,
         },
+        {
+          title: "Manage Companies",
+          view: VIEW.MANAGE_COMPANIES,
+        },
       ],
     },
     {
       title: "Approver",
-      view: VIEW.APPROVER,
+      view: VIEW.APPROVER_RESOLUTION_TABLE,
       icon: Settings2,
       items: [
         {

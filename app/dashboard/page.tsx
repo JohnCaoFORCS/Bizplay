@@ -23,6 +23,7 @@ import ResolutionTable from "@/components/tables/resolution/ResolutionTable";
 import DepartmentTable from "@/components/tables/department/DepartmentTable";
 import UserTable from "@/components/tables/user/UserTable";
 import CardTable from "@/components/tables/card/CardTable";
+import CompanyTable from "@/components/tables/company/CompanyTable";
 
 export default function Page() {
   const [selectedView, setSelectedView] = useState(VIEW.RECEIPT_TABLE);
@@ -43,6 +44,8 @@ export default function Page() {
         return <ReceiptTable />;
       case VIEW.APPROVER_RESOLUTION_TABLE:
         return <ResolutionTable />;
+      case VIEW.MANAGE_COMPANIES:
+        return <CompanyTable />;
       default:
         return <DefaultContent />;
     }
