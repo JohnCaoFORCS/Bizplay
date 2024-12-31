@@ -14,15 +14,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import DialogAddReceipt from "@/components/dialogs/receipt/DialogAddReceipt";
+import DialogAddUser from "@/components/dialogs/user/DialogAddUser";
 
-interface ReceiptTableViewOptionsProps<TData> {
+interface UserTableViewOptionsProps<TData> {
   table: Table<TData>;
 }
 
-export function ReceiptTableViewOptions<TData>({
+export function UserTableViewOptions<TData>({
   table,
-}: ReceiptTableViewOptionsProps<TData>) {
+}: UserTableViewOptionsProps<TData>) {
   return (
     <div className="flex items-center justify-end gap-2">
       <CalendarDateRangePicker />
@@ -62,10 +62,10 @@ export function ReceiptTableViewOptions<TData>({
       <Dialog>
         <DialogTrigger>
           <Button className="h-8" variant="outline">
-            New receipt
+            New user
           </Button>
         </DialogTrigger>
-        <DialogAddReceipt />
+        <DialogAddUser />
         <Dialog />
       </Dialog>
     </div>

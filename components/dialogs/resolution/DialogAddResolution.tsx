@@ -20,9 +20,7 @@ import {
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 
-type DialogAddResolutionProps = {};
-
-export default function DialogAddResolution({}: DialogAddResolutionProps) {
+export default function DialogAddResolution() {
   const [id, setId] = useState("");
   const [status, setStatus] = useState("pending");
   const [totalCash, setTotalCash] = useState(0);

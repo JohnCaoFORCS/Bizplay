@@ -14,6 +14,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
+import DialogAddDepartment from "@/components/dialogs/department/DialogAddDepartment";
 
 interface DepartmentTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -64,7 +65,7 @@ export function DepartmentTableViewOptions<TData>({
             New department
           </Button>
         </DialogTrigger>
-        {/* <DialogAddDepartment /> */}
+        <DialogAddDepartment />
         <Dialog />
       </Dialog>
     </div>

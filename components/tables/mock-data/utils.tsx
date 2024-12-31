@@ -36,9 +36,23 @@ export const departmentSchema = z.object({
   companyId: z.string(),
 });
 
+export const userSchema = z.object({
+  id: z.string(),
+  companyId: z.string(),
+  cardId: z.string(),
+  departmentId: z.string(),
+  account: z.string(),
+  password: z.string(),
+  name: z.string(),
+  role: z.number(),
+  phoneNumber: z.string(),
+  email: z.string(),
+});
+
 export type Receipt = z.infer<typeof receiptSchema>;
 export type Resolution = z.infer<typeof resolutionSchema>;
 export type Department = z.infer<typeof departmentSchema>;
+export type User = z.infer<typeof userSchema>;
 
 export const labels = [
   {

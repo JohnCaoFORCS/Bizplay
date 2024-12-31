@@ -22,3 +22,16 @@ export function getViewName(view: VIEW) {
       return "Manage Receipts";
   }
 }
+
+export function getRoleName(role: number) {
+  switch (role) {
+    case 1:
+      return "Admin";
+    case 2:
+      return "Manager";
+    case 3:
+      return "Approver";
+    case 4:
+      return "User";
+  }
+}

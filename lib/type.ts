@@ -1,4 +1,9 @@
-import { Receipt, Resolution } from "@/components/tables/mock-data/utils";
+import {
+  Department,
+  Receipt,
+  Resolution,
+  User,
+} from "@/components/tables/mock-data/utils";
 import type { DIALOG_TYPE } from "./constants";
 
 export type ReceiptDialog = {
@@ -14,4 +19,9 @@ export type ResolutionDialog = {
 export type DepartmentDialog = {
   type: DIALOG_TYPE;
   department: Department;
+};
+
+export type UserDialog = {
+  type: DIALOG_TYPE;
+  user: User;
 };

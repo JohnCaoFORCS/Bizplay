@@ -47,7 +47,7 @@ export default function getDepartmentTableColumns(
       enableSorting: true,
     },
     {
-      accessorKey: "companyId ",
+      accessorKey: "companyId",
       header: ({ column }) => (
         <DepartmentTableColumnHeader column={column} title="Company ID" />
       ),

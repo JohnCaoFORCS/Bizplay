@@ -8,29 +8,36 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
-import { Receipt } from "../tables/mock-data/utils";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
+import { useEffect, useState } from "react";
+import { Department } from "@/components/tables/mock-data/utils";
 
-type DialogViewReceiptProps = {
+type DialogEditDepartmentProps = {
   isOpen: boolean;
-  receipt: Receipt;
+  department: Department;
   handleOnClose: () => void;
 };
 
-export default function DialogViewReceipt({
+export default function DialogEditDepartment({
   isOpen,
-  receipt,
+  department,
   handleOnClose,
-}: DialogViewReceiptProps) {
+}: DialogEditDepartmentProps) {
+  const [name, setName] = useState(department.name);
+
+  useEffect(() => {
+    setName(department.name);
+  }, [department.id]);
+
   return (
     <Dialog open={isOpen}>
       <DialogContent className="[&>button]:hidden">
         <DialogHeader>
-          <DialogTitle>View receipt</DialogTitle>
+          <DialogTitle>Edit receipt</DialogTitle>
           <DialogDescription>
-            Receipt details are displayed below.
+            Please edit the receipt details below.
           </DialogDescription>
         </DialogHeader>
         <div className="grid gap-4 py-4">
@@ -38,45 +45,43 @@ export default function DialogViewReceipt({
             <Label htmlFor="id" className="text-right">
               Id
             </Label>
-            <Input id="id" className="col-span-3" value={receipt.id} readOnly />
-          </div>
-          <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="userId" className="text-right">
-              User Id
-            </Label>
             <Input
-              id="userId"
+              disabled={true}
+              id="id"
+              value={department.id}
               className="col-span-3"
-              value={receipt.userId}
-              readOnly
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="cashAmount" className="text-right">
-              Cash Amount
+            <Label htmlFor="companyId" className="text-right">
+              Company Id
             </Label>
             <Input
-              id="cashAmount"
+              disabled={true}
+              id="companyId"
+              value={department.companyId}
               className="col-span-3"
-              value={receipt.cashAmount}
-              readOnly
             />
           </div>
           <div className="grid grid-cols-4 items-center gap-4">
-            <Label htmlFor="createdAt" className="text-right">
-              Created At
+            <Label htmlFor="name" className="text-right">
+              Department Name
             </Label>
             <Input
-              id="createdAt"
+              id="name"
+              value={name}
               className="col-span-3"
-              value={receipt.createdAt}
-              readOnly
+              type="text"
+              onChange={(e) => setName(e.target.value)}
             />
           </div>
         </div>
         <DialogFooter>
           <Button type="button" variant="outline" onClick={handleOnClose}>
-            Close
+            Cancel
+          </Button>
+          <Button onClick={handleOnClose} type="submit">
+            Save changes
           </Button>
         </DialogFooter>
       </DialogContent>

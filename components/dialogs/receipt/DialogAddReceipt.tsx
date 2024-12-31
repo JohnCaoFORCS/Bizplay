@@ -13,9 +13,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
 
-type DialogAddReceiptProps = {};
-
-export default function DialogAddReceipt({}: DialogAddReceiptProps) {
+export default function DialogAddReceipt() {
   const [cashAmount, setCashAmount] = useState(0);
   const [createdAt, setCreatedAt] = useState(new Date().toISOString());
   const [userId, setUserId] = useState("");
