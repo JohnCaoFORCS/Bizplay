@@ -47,7 +47,7 @@ const data = {
   ],
   navMain: [
     {
-      title: "Tables",
+      title: "User",
       view: VIEW.RECEIPT_TABLE,
       icon: SquareTerminal,
       isActive: true,
@@ -63,7 +63,7 @@ const data = {
       ],
     },
     {
-      title: "Management",
+      title: "Manager",
       view: VIEW.MANAGE_DEPARTMENTS,
       icon: Settings2,
       items: [
@@ -82,6 +82,21 @@ const data = {
         {
           title: "Manage Receipts",
           view: VIEW.MANAGE_RECEIPTS,
+        },
+      ],
+    },
+    {
+      title: "Approver",
+      view: VIEW.APPROVER,
+      icon: Settings2,
+      items: [
+        {
+          title: "Resolution Table",
+          view: VIEW.RESOLUTION_TABLE,
+        },
+        {
+          title: "Report View",
+          view: VIEW.APPROVER_REPORT_VIEW,
         },
       ],
     },

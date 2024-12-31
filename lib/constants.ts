@@ -5,6 +5,9 @@ export enum VIEW {
   MANAGE_USERS = "manage-users",
   MANAGE_CARDS = "manage-cards",
   MANAGE_RECEIPTS = "manage-receipts",
+  MANAGE_COMPANIES = "manage-companies",
+  APPROVER_RESOLUTION_TABLE = "approver-resolution-table",
+  APPROVER_REPORT_VIEW = "approver-report-view",
 }
 
 export enum DIALOG_TYPE {

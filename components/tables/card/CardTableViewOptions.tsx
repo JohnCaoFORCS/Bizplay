@@ -14,7 +14,6 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import DialogAddUser from "@/components/dialogs/user/DialogAddUser";
 import DialogAddCard from "@/components/dialogs/card/DialogAddCard";
 
 interface CardTableViewOptionsProps<TData> {

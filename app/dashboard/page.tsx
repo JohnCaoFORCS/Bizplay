@@ -39,6 +39,10 @@ export default function Page() {
         return <UserTable />;
       case VIEW.MANAGE_CARDS:
         return <CardTable />;
+      case VIEW.MANAGE_RECEIPTS:
+        return <ReceiptTable />;
+      case VIEW.APPROVER_RESOLUTION_TABLE:
+        return <ResolutionTable />;
       default:
         return <DefaultContent />;
     }
