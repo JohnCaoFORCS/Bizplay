@@ -16,17 +16,37 @@ import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
 import { Dialog, DialogTrigger } from "@/components/ui/dialog";
 import DialogAddReceipt from "@/components/dialogs/receipt/DialogAddReceipt";
 import { ROLE } from "@/lib/constants";
-import DialogAddResolution from "@/components/dialogs/resolution/DialogAddResolution";
+import { Receipt } from "../mock-data/utils";
+import { useToast } from "@/hooks/use-toast";
 
 interface ReceiptTableViewOptionsProps<TData> {
   table: Table<TData>;
   role: ROLE;
+  setSelectedMakeResolution: (receipt: Receipt | undefined) => void;
 }
 
 export function ReceiptTableViewOptions<TData>({
   table,
   role,
+  setSelectedMakeResolution,
 }: ReceiptTableViewOptionsProps<TData>) {
+  const { toast } = useToast();
+  const selectedReceipts = table
+    .getSelectedRowModel()
+    .rows.map((row) => row.original);
+
+  const handleMakeResolution = () => {
+    if (selectedReceipts.length === 0) {
+      toast({
+        variant: "destructive",
+        title: "No receipts selected",
+        description: "Please select at least one receipt",
+      });
+      return;
+    }
+    setSelectedMakeResolution(selectedReceipts[0] as Receipt);
+  };
+
   return (
     <div className="flex flex-col gap-2">
       <CalendarDateRangePicker />
@@ -80,15 +100,13 @@ export function ReceiptTableViewOptions<TData>({
               <DialogAddReceipt />
               <Dialog />
             </Dialog>
-            <Dialog>
-              <DialogTrigger>
-                <Button className="h-8" variant="outline">
-                  Make resolution
-                </Button>
-              </DialogTrigger>
-              <DialogAddResolution />
-              <Dialog />
-            </Dialog>
+            <Button
+              onClick={handleMakeResolution}
+              className="h-8"
+              variant="outline"
+            >
+              Make resolution
+            </Button>
           </>
         )}
       </div>

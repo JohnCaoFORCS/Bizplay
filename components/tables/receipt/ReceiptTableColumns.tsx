@@ -8,7 +8,8 @@ import { Receipt } from "@/components/tables/mock-data/utils";
 import { ReceiptDialog } from "@/lib/type";
 
 export default function getReceiptTableColumns(
-  handleOpenDialog: (receiptDialog: ReceiptDialog | undefined) => void
+  handleOpenDialog: (receiptDialog: ReceiptDialog | undefined) => void,
+  handleSetSelectedMakeResolution: (receipt: Receipt) => void
 ) {
   const columns: ColumnDef<Receipt>[] = [
     {
@@ -76,7 +77,11 @@ export default function getReceiptTableColumns(
     {
       id: "actions",
       cell: ({ row }) => (
-        <ReceiptTableRowActions row={row} handleOpenDialog={handleOpenDialog} />
+        <ReceiptTableRowActions
+          row={row}
+          handleOpenDialog={handleOpenDialog}
+          handleSetSelectedMakeResolution={handleSetSelectedMakeResolution}
+        />
       ),
     },
   ];

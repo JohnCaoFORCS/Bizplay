@@ -8,7 +8,6 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Receipt } from "../mock-data/utils";
@@ -18,11 +17,13 @@ import { DIALOG_TYPE } from "@/lib/constants";
 type ReceiptTableRowActionsProps = {
   row: any;
   handleOpenDialog: (receiptDialog: ReceiptDialog | undefined) => void;
+  handleSetSelectedMakeResolution: (receipt: Receipt) => void;
 };
 
 export function ReceiptTableRowActions({
   row,
   handleOpenDialog,
+  handleSetSelectedMakeResolution,
 }: ReceiptTableRowActionsProps) {
   const receipt: Receipt = row.original;
 
@@ -40,6 +41,10 @@ export function ReceiptTableRowActions({
     });
   };
 
+  const handleMakeResolution = () => {
+    handleSetSelectedMakeResolution(receipt);
+  };
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -52,13 +57,13 @@ export function ReceiptTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
+        <DropdownMenuItem onSelect={handleMakeResolution}>
+          Make Resolution
+        </DropdownMenuItem>
         <DropdownMenuItem onSelect={handleEditReceipt}>Edit</DropdownMenuItem>
         <DropdownMenuItem onSelect={handleViewReceipt}>View</DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        <DropdownMenuItem>Delete</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
