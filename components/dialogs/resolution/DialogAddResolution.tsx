@@ -34,9 +34,9 @@ export default function DialogAddResolution() {
   return (
     <DialogContent>
       <DialogHeader>
-        <DialogTitle>Edit Resolution</DialogTitle>
+        <DialogTitle>Add Resolution</DialogTitle>
         <DialogDescription>
-          Please edit the resolution details below.
+          Please add the resolution details below.
         </DialogDescription>
       </DialogHeader>
       <div className="grid gap-4 py-4">

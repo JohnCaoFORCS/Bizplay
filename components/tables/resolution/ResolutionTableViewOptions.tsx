@@ -13,8 +13,6 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
-import { Dialog, DialogTrigger } from "@/components/ui/dialog";
-import DialogAddResolution from "@/components/dialogs/resolution/DialogAddResolution";
 
 interface ResolutionTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -59,15 +57,6 @@ export function ResolutionTableViewOptions<TData>({
             })}
         </DropdownMenuContent>
       </DropdownMenu>
-      <Dialog>
-        <DialogTrigger>
-          <Button className="h-8" variant="outline">
-            New resolution
-          </Button>
-        </DialogTrigger>
-        <DialogAddResolution />
-        <Dialog />
-      </Dialog>
     </div>
   );
 }
