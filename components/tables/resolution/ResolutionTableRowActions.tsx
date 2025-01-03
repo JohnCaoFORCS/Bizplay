@@ -13,7 +13,6 @@ import { Resolution } from "../mock-data/utils";
 import { DIALOG_TYPE, ROLE } from "@/lib/constants";
 import { ResolutionDialog } from "@/lib/type";
 import { Row, Table } from "@tanstack/react-table";
-import { useToast } from "@/hooks/use-toast";
 
 type ResolutionTableRowActionsProps = {
   table: Table<Resolution>;
@@ -30,33 +29,22 @@ export function ResolutionTableRowActions({
   handleOpenDialog,
   setSelectedReSubmitResolution,
 }: ResolutionTableRowActionsProps) {
-  const { toast } = useToast();
   const resolutions = table
     .getFilteredSelectedRowModel()
     .rows.map((row) => row.original);
   const currentResolution = row.original;
 
   const handleApproveResolution = () => {
-    if (resolutions.length === 0) {
-      handleShowToastSelectResolution();
-      return;
-    }
-
     handleOpenDialog({
       type: DIALOG_TYPE.APPROVE_RESOLUTION,
-      resolutions: resolutions,
+      resolutions: resolutions.length > 1 ? resolutions : [currentResolution],
     });
   };
 
   const handleRejectResolution = () => {
-    if (resolutions.length === 0) {
-      handleShowToastSelectResolution();
-      return;
-    }
-
     handleOpenDialog({
       type: DIALOG_TYPE.REJECT_RESOLUTION,
-      resolutions: resolutions,
+      resolutions: resolutions.length > 1 ? resolutions : [currentResolution],
     });
   };
 
@@ -66,14 +54,6 @@ export function ResolutionTableRowActions({
 
   const handleViewResolution = () => {
     setSelectedReSubmitResolution(currentResolution);
-  };
-
-  const handleShowToastSelectResolution = () => {
-    toast({
-      variant: "destructive",
-      title: "No resolutions selected",
-      description: "Please select at least one resolution to approve.",
-    });
   };
 
   return (

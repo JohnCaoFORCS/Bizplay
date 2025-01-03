@@ -15,10 +15,8 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { getStatusBadge, Receipt, Resolution } from "../tables/mock-data/utils";
+import { getStatusBadge, Resolution } from "../tables/mock-data/utils";
 import { CircleX } from "lucide-react";
-import MenuSelectApprover from "../menus/MenuSelectApprover";
-import { Badge } from "../ui/badge";
 import MenuApprovers from "../menus/MenuApprovers";
 
 const receiptFormSchema = z.object({
@@ -105,7 +103,7 @@ export function ViewReSubmitResolution({
             Change Approver
           </Button>
           <Button variant={"default"} size={"default"}>
-            Submit
+            Re-submit
           </Button>
         </div>
       </div>
