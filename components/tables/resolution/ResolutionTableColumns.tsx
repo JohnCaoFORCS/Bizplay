@@ -116,10 +116,10 @@ export default function getResolutionTableColumns(
     },
     {
       id: "actions",
-      cell: ({ row }) => (
+      cell: ({ table }) => (
         <ResolutionTableRowActions
+          table={table}
           role={role}
-          row={row}
           handleOpenDialog={handleOpenDialog}
         />
       ),

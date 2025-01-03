@@ -22,11 +22,12 @@ import DialogEditCard from "./card/DialogEditCard";
 import DialogViewCard from "./card/DialogViewCard";
 import DialogEditCompany from "./company/DialogEditCompany";
 import DialogViewCompany from "./company/DialogViewCompany";
+import DialogApproveResolutions from "./approver/DialogApproveResolution";
 
 type DialogLayoutProps = {
   type: DIALOG_TYPE;
   receipt?: Receipt;
-  resolution?: Resolution;
+  resolutions?: Resolution[];
   department?: Department;
   user?: User;
   card?: Card;
@@ -37,7 +38,7 @@ type DialogLayoutProps = {
 export default function DialogLayout({
   type,
   receipt,
-  resolution,
+  resolutions,
   department,
   user,
   card,
@@ -47,12 +48,12 @@ export default function DialogLayout({
   const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
-    if (receipt || department || resolution || user || card || company) {
+    if (receipt || department || resolutions || user || card || company) {
       setIsOpen(true);
     } else {
       setIsOpen(false);
     }
-  }, [receipt, department, resolution, user, card, company]);
+  }, [receipt, department, resolutions, user, card, company]);
 
   switch (type) {
     case DIALOG_TYPE.RECEIPT_EDIT:
@@ -76,20 +77,20 @@ export default function DialogLayout({
         <></>
       );
     case DIALOG_TYPE.RESOLUTION_EDIT:
-      return resolution ? (
+      return resolutions && resolutions.length > 0 ? (
         <DialogEditResolution
           isOpen={isOpen}
-          resolution={resolution}
+          resolution={resolutions[0]}
           handleOnClose={handleOnClose}
         />
       ) : (
         <></>
       );
     case DIALOG_TYPE.RESOLUTION_VIEW:
-      return resolution ? (
+      return resolutions && resolutions.length > 0 ? (
         <DialogViewResolution
           isOpen={isOpen}
-          resolution={resolution}
+          resolution={resolutions[0]}
           handleOnClose={handleOnClose}
         />
       ) : (
@@ -170,6 +171,16 @@ export default function DialogLayout({
         <DialogViewCompany
           isOpen={isOpen}
           company={company}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.APPROVE_RESOLUTION:
+      return resolutions ? (
+        <DialogApproveResolutions
+          isOpen={isOpen}
+          resolutions={resolutions}
           handleOnClose={handleOnClose}
         />
       ) : (

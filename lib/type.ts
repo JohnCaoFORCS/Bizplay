@@ -15,7 +15,7 @@ export type ReceiptDialog = {
 
 export type ResolutionDialog = {
   type: DIALOG_TYPE;
-  resolution: Resolution;
+  resolutions: Resolution[];
 };
 
 export type DepartmentDialog = {

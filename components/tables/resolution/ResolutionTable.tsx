@@ -24,7 +24,7 @@ import {
   TableRow,
 } from "@/components/ui/table";
 
-import { ReceiptTablePagination } from "./ResolutionTablePagination";
+import { ResolutionTablePagination } from "./ResolutionTablePagination";
 import { Resolution } from "../mock-data/utils";
 import type { ResolutionDialog } from "@/lib/type";
 import DialogLayout from "@/components/dialogs/DialogLayout";
@@ -122,11 +122,11 @@ export default function ResolutionTable({ role }: Props) {
           </TableBody>
         </Table>
       </div>
-      <ReceiptTablePagination table={table} />
+      <ResolutionTablePagination table={table} />
       {resolutionDialog && (
         <DialogLayout
           type={resolutionDialog.type}
-          resolution={resolutionDialog.resolution}
+          resolutions={resolutionDialog.resolutions}
           handleOnClose={() => setResolutionDialog(undefined)}
         />
       )}

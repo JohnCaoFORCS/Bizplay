@@ -12,32 +12,41 @@ import {
 import { Resolution } from "../mock-data/utils";
 import { DIALOG_TYPE, ROLE } from "@/lib/constants";
 import { ResolutionDialog } from "@/lib/type";
-import { Row } from "@tanstack/react-table";
+import { Table } from "@tanstack/react-table";
 
 type ResolutionTableRowActionsProps = {
-  row: Row<Resolution>;
+  table: Table<Resolution>;
   role: ROLE;
   handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void;
 };
 
 export function ResolutionTableRowActions({
-  row,
+  table,
   role,
   handleOpenDialog,
 }: ResolutionTableRowActionsProps) {
-  const resolution: Resolution = row.original;
+  const resolutions = table
+    .getFilteredSelectedRowModel()
+    .rows.map((row) => row.original);
+
+  const handleApproveResolution = () => {
+    handleOpenDialog({
+      type: DIALOG_TYPE.APPROVE_RESOLUTION,
+      resolutions: resolutions,
+    });
+  };
 
   const handleEditResolution = () => {
     handleOpenDialog({
       type: DIALOG_TYPE.RESOLUTION_EDIT,
-      resolution: resolution,
+      resolutions: resolutions,
     });
   };
 
   const handleViewResolution = () => {
     handleOpenDialog({
       type: DIALOG_TYPE.RESOLUTION_VIEW,
-      resolution: resolution,
+      resolutions: resolutions,
     });
   };
 
@@ -53,7 +62,15 @@ export function ResolutionTableRowActions({
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
-        <DropdownMenuItem onSelect={handleEditResolution}>
+        <DropdownMenuItem
+          onSelect={() => {
+            if (role === ROLE.APPROVER) {
+              handleApproveResolution();
+            } else {
+              handleEditResolution();
+            }
+          }}
+        >
           {role === ROLE.APPROVER ? "Approve" : "Edit"}
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={handleViewResolution}>
