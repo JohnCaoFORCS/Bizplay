@@ -22,6 +22,10 @@ export function getViewName(view: VIEW) {
       return "Manage Receipts";
     case VIEW.MANAGE_COMPANIES:
       return "Manage Companies";
+    case VIEW.APPROVER_RESOLUTION_TABLE:
+      return "Approver Resolution Table";
+    case VIEW.APPROVER_REPORT_VIEW:
+      return "Approver Report View";
   }
 }
 

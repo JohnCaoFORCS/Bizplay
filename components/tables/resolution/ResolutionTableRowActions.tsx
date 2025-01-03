@@ -7,27 +7,27 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
-  DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
-import { Receipt, Resolution } from "../mock-data/utils";
-import { DIALOG_TYPE } from "@/lib/constants";
+import { Resolution } from "../mock-data/utils";
+import { DIALOG_TYPE, ROLE } from "@/lib/constants";
 import { ResolutionDialog } from "@/lib/type";
+import { Row } from "@tanstack/react-table";
 
 type ResolutionTableRowActionsProps = {
-  row: any;
+  row: Row<Resolution>;
+  role: ROLE;
   handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void;
 };
 
 export function ResolutionTableRowActions({
   row,
+  role,
   handleOpenDialog,
 }: ResolutionTableRowActionsProps) {
   const resolution: Resolution = row.original;
 
   const handleEditResolution = () => {
-    console.log("resolution", resolution);
-
     handleOpenDialog({
       type: DIALOG_TYPE.RESOLUTION_EDIT,
       resolution: resolution,
@@ -54,16 +54,14 @@ export function ResolutionTableRowActions({
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="w-[160px]">
         <DropdownMenuItem onSelect={handleEditResolution}>
-          Edit
+          {role === ROLE.APPROVER ? "Approve" : "Edit"}
         </DropdownMenuItem>
         <DropdownMenuItem onSelect={handleViewResolution}>
-          View
+          {role === ROLE.APPROVER ? "Reject" : "View"}
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        <DropdownMenuItem>
-          Delete
-          <DropdownMenuShortcut>⌘⌫</DropdownMenuShortcut>
-        </DropdownMenuItem>
+        {role === ROLE.APPROVER && <DropdownMenuItem>Restart</DropdownMenuItem>}
+        <DropdownMenuItem>Delete</DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

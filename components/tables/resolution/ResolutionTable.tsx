@@ -31,8 +31,13 @@ import DialogLayout from "@/components/dialogs/DialogLayout";
 import { ResolutionTableToolbar } from "./ResolitionTableToolBar";
 import { resolutionTableData } from "../mock-data/resolution-table-data";
 import getResolutionTableColumns from "./ResolutionTableColumns";
+import { ROLE } from "@/lib/constants";
 
-export default function ResolutionTable() {
+type Props = {
+  role: ROLE;
+};
+
+export default function ResolutionTable({ role }: Props) {
   const [rowSelection, setRowSelection] = useState({});
   const [columnVisibility, setColumnVisibility] = useState<VisibilityState>({});
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
@@ -44,7 +49,7 @@ export default function ResolutionTable() {
 
   const table = useReactTable<Resolution>({
     data: resolutionTableData,
-    columns: getResolutionTableColumns(setResolutionDialog),
+    columns: getResolutionTableColumns(setResolutionDialog, role),
     state: {
       sorting,
       columnVisibility,

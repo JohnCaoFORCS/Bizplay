@@ -9,9 +9,11 @@ import {
 import { ResolutionDialog } from "@/lib/type";
 import { ResolutionTableColumnHeader } from "./ResolutionTableColumnHeader";
 import { ResolutionTableRowActions } from "./ResolutionTableRowActions";
+import { ROLE } from "@/lib/constants";
 
 export default function getResolutionTableColumns(
-  handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void
+  handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void,
+  role: ROLE
 ) {
   const columns: ColumnDef<Resolution>[] = [
     {
@@ -116,6 +118,7 @@ export default function getResolutionTableColumns(
       id: "actions",
       cell: ({ row }) => (
         <ResolutionTableRowActions
+          role={role}
           row={row}
           handleOpenDialog={handleOpenDialog}
         />
