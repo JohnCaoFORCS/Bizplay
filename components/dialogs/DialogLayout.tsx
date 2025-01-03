@@ -23,6 +23,7 @@ import DialogViewCard from "./card/DialogViewCard";
 import DialogEditCompany from "./company/DialogEditCompany";
 import DialogViewCompany from "./company/DialogViewCompany";
 import DialogApproveResolutions from "./approver/DialogApproveResolution";
+import DialogRejectResolution from "./approver/DialogRejectResolution";
 
 type DialogLayoutProps = {
   type: DIALOG_TYPE;
@@ -179,6 +180,16 @@ export default function DialogLayout({
     case DIALOG_TYPE.APPROVE_RESOLUTION:
       return resolutions ? (
         <DialogApproveResolutions
+          isOpen={isOpen}
+          resolutions={resolutions}
+          handleOnClose={handleOnClose}
+        />
+      ) : (
+        <></>
+      );
+    case DIALOG_TYPE.REJECT_RESOLUTION:
+      return resolutions ? (
+        <DialogRejectResolution
           isOpen={isOpen}
           resolutions={resolutions}
           handleOnClose={handleOnClose}

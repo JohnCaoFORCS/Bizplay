@@ -13,6 +13,7 @@ import { Resolution } from "../mock-data/utils";
 import { DIALOG_TYPE, ROLE } from "@/lib/constants";
 import { ResolutionDialog } from "@/lib/type";
 import { Table } from "@tanstack/react-table";
+import { useToast } from "@/hooks/use-toast";
 
 type ResolutionTableRowActionsProps = {
   table: Table<Resolution>;
@@ -25,13 +26,31 @@ export function ResolutionTableRowActions({
   role,
   handleOpenDialog,
 }: ResolutionTableRowActionsProps) {
+  const { toast } = useToast();
   const resolutions = table
     .getFilteredSelectedRowModel()
     .rows.map((row) => row.original);
 
   const handleApproveResolution = () => {
+    if (resolutions.length === 0) {
+      handleShowToastSelectResolution();
+      return;
+    }
+
     handleOpenDialog({
       type: DIALOG_TYPE.APPROVE_RESOLUTION,
+      resolutions: resolutions,
+    });
+  };
+
+  const handleRejectResolution = () => {
+    if (resolutions.length === 0) {
+      handleShowToastSelectResolution();
+      return;
+    }
+
+    handleOpenDialog({
+      type: DIALOG_TYPE.REJECT_RESOLUTION,
       resolutions: resolutions,
     });
   };
@@ -47,6 +66,14 @@ export function ResolutionTableRowActions({
     handleOpenDialog({
       type: DIALOG_TYPE.RESOLUTION_VIEW,
       resolutions: resolutions,
+    });
+  };
+
+  const handleShowToastSelectResolution = () => {
+    toast({
+      variant: "destructive",
+      title: "No resolutions selected",
+      description: "Please select at least one resolution to approve.",
     });
   };
 
@@ -73,12 +100,20 @@ export function ResolutionTableRowActions({
         >
           {role === ROLE.APPROVER ? "Approve" : "Edit"}
         </DropdownMenuItem>
+        {role === ROLE.APPROVER && (
+          <DropdownMenuItem onSelect={handleRejectResolution}>
+            Reject
+          </DropdownMenuItem>
+        )}
         <DropdownMenuItem onSelect={handleViewResolution}>
-          {role === ROLE.APPROVER ? "Reject" : "View"}
+          View
         </DropdownMenuItem>
         <DropdownMenuSeparator />
-        {role === ROLE.APPROVER && <DropdownMenuItem>Restart</DropdownMenuItem>}
-        <DropdownMenuItem>Delete</DropdownMenuItem>
+        {role === ROLE.APPROVER ? (
+          <DropdownMenuItem>Restart</DropdownMenuItem>
+        ) : (
+          <DropdownMenuItem>Delete</DropdownMenuItem>
+        )}
       </DropdownMenuContent>
     </DropdownMenu>
   );

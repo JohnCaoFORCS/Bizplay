@@ -24,6 +24,7 @@ export enum DIALOG_TYPE {
   COMPANY_EDIT = "company-edit",
   COMPANY_VIEW = "company-view",
   APPROVE_RESOLUTION = "approve-resolution",
+  REJECT_RESOLUTION = "reject-resolution",
 }
 
 export enum ROLE {
