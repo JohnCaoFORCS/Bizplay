@@ -32,6 +32,7 @@ import { ResolutionTableToolbar } from "./ResolitionTableToolBar";
 import { resolutionTableData } from "../mock-data/resolution-table-data";
 import getResolutionTableColumns from "./ResolutionTableColumns";
 import { ROLE } from "@/lib/constants";
+import { ViewReSubmitResolution } from "@/components/views/ViewReSubmitResolution";
 
 type Props = {
   role: ROLE;
@@ -47,9 +48,17 @@ export default function ResolutionTable({ role }: Props) {
     ResolutionDialog | undefined
   >(undefined);
 
+  const [selectedResubmitResolution, setSelectedResubmitResolution] = useState<
+    Resolution | undefined
+  >(undefined);
+
   const table = useReactTable<Resolution>({
     data: resolutionTableData,
-    columns: getResolutionTableColumns(setResolutionDialog, role),
+    columns: getResolutionTableColumns(
+      role,
+      setResolutionDialog,
+      setSelectedResubmitResolution
+    ),
     state: {
       sorting,
       columnVisibility,
@@ -68,6 +77,15 @@ export default function ResolutionTable({ role }: Props) {
     getFacetedRowModel: getFacetedRowModel(),
     getFacetedUniqueValues: getFacetedUniqueValues(),
   });
+
+  if (selectedResubmitResolution) {
+    return (
+      <ViewReSubmitResolution
+        resolution={selectedResubmitResolution}
+        setSelectedReSubmitResolution={setSelectedResubmitResolution}
+      />
+    );
+  }
 
   return (
     <div className="space-y-4">

@@ -130,29 +130,41 @@ export const priorities = [
   },
 ];
 
-export const getStatusBadge = (status: string) => {
+export const getStatusBadge = (status: string, className: string) => {
   switch (status) {
     case "Completed":
       return (
-        <Badge variant="outline" className="bg-green-500 text-white">
+        <Badge
+          variant="outline"
+          className={`bg-green-500 text-white ${className}`}
+        >
           Completed
         </Badge>
       );
     case "In process":
       return (
-        <Badge variant="outline" className="bg-yellow-500 text-white">
+        <Badge
+          variant="outline"
+          className={`bg-yellow-500 text-white ${className}`}
+        >
           In process
         </Badge>
       );
     case "Rejected":
       return (
-        <Badge variant="outline" className="bg-red-500 text-white">
+        <Badge
+          variant="outline"
+          className={`bg-red-500 text-white ${className}`}
+        >
           Rejected
         </Badge>
       );
     case "Draft":
       return (
-        <Badge variant="outline" className="bg-gray-500 text-white">
+        <Badge
+          variant="outline"
+          className={`bg-gray-500 text-white ${className}`}
+        >
           Draft
         </Badge>
       );

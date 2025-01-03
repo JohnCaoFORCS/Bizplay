@@ -15,9 +15,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
-import { Receipt } from "../tables/mock-data/utils";
+import { getStatusBadge, Receipt, Resolution } from "../tables/mock-data/utils";
 import { CircleX } from "lucide-react";
 import MenuSelectApprover from "../menus/MenuSelectApprover";
+import { Badge } from "../ui/badge";
+import MenuApprovers from "../menus/MenuApprovers";
 
 const receiptFormSchema = z.object({
   id: z.string(),
@@ -56,15 +58,15 @@ const defaultValues: Partial<ReceiptFormValues> = {
   selectApprover: "",
 };
 
-type ViewMakeResolutionProps = {
-  receipt: Receipt;
-  setSelectedMakeResolution: (receipt: Receipt | undefined) => void;
+type ViewReSubmitResolutionProps = {
+  resolution: Resolution;
+  setSelectedReSubmitResolution: (resolution: Resolution | undefined) => void;
 };
 
-export function ViewMakeResolution({
-  receipt,
-  setSelectedMakeResolution,
-}: ViewMakeResolutionProps) {
+export function ViewReSubmitResolution({
+  resolution,
+  setSelectedReSubmitResolution,
+}: ViewReSubmitResolutionProps) {
   const form = useForm<ReceiptFormValues>({
     resolver: zodResolver(receiptFormSchema),
     defaultValues,
@@ -85,24 +87,27 @@ export function ViewMakeResolution({
   return (
     <div className="flex flex-col items-center w-full h-full gap-4 px-10 py-4">
       <div className="flex w-full items-center justify-between">
+        {getStatusBadge(
+          resolution.status,
+          "flex items-center justify-center w-[100px] h-8 text-sm"
+        )}
         <div className="flex items-center gap-2">
           <Button
             onClick={() => {
-              setSelectedMakeResolution(undefined);
+              setSelectedReSubmitResolution(undefined);
             }}
             variant={"outline"}
             size={"default"}
           >
-            Cancel
+            Back
           </Button>
           <Button variant={"outline"} size={"default"}>
-            Make as a Draft
+            Change Approver
+          </Button>
+          <Button variant={"default"} size={"default"}>
+            Submit
           </Button>
         </div>
-
-        <Button variant={"default"} size={"default"}>
-          Submit
-        </Button>
       </div>
       <div className="flex flex-col w-full gap-2">
         <span className="text-lg text-center font-semibold">
@@ -181,11 +186,11 @@ export function ViewMakeResolution({
         </div>
       </div>
       <span className="flex items-center justify-start w-full text-base font-semibold -mb-4 mt-1">
-        Select Approver
+        Approvers
       </span>
       <div className="w-full h-[2px] bg-primary mb-2" />
       <div className="w-full -mt-2">
-        <MenuSelectApprover />
+        <MenuApprovers />
       </div>
     </div>
   );

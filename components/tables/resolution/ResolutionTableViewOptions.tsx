@@ -15,6 +15,7 @@ import {
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
 import { useEffect, useState } from "react";
 import DropDownMenuStatusResolution from "@/components/menus/DropDownMenuStatusResolution";
+import { Resolution } from "../mock-data/utils";
 
 interface ResolutionTableViewOptionsProps<TData> {
   table: Table<TData>;

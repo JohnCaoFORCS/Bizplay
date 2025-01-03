@@ -5,6 +5,7 @@ import { Table } from "@tanstack/react-table";
 import { Input } from "@/components/ui/input";
 import { useEffect, useState } from "react";
 import { ResolutionTableViewOptions } from "./ResolutionTableViewOptions";
+import { Resolution } from "../mock-data/utils";
 
 interface DataTableToolbarProps<TData> {
   table: Table<TData>;

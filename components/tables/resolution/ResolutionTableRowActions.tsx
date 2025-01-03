@@ -12,24 +12,29 @@ import {
 import { Resolution } from "../mock-data/utils";
 import { DIALOG_TYPE, ROLE } from "@/lib/constants";
 import { ResolutionDialog } from "@/lib/type";
-import { Table } from "@tanstack/react-table";
+import { Row, Table } from "@tanstack/react-table";
 import { useToast } from "@/hooks/use-toast";
 
 type ResolutionTableRowActionsProps = {
   table: Table<Resolution>;
   role: ROLE;
+  row: Row<Resolution>;
   handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void;
+  setSelectedReSubmitResolution: (resolution: Resolution | undefined) => void;
 };
 
 export function ResolutionTableRowActions({
   table,
   role,
+  row,
   handleOpenDialog,
+  setSelectedReSubmitResolution,
 }: ResolutionTableRowActionsProps) {
   const { toast } = useToast();
   const resolutions = table
     .getFilteredSelectedRowModel()
     .rows.map((row) => row.original);
+  const currentResolution = row.original;
 
   const handleApproveResolution = () => {
     if (resolutions.length === 0) {
@@ -56,17 +61,11 @@ export function ResolutionTableRowActions({
   };
 
   const handleEditResolution = () => {
-    handleOpenDialog({
-      type: DIALOG_TYPE.RESOLUTION_EDIT,
-      resolutions: resolutions,
-    });
+    setSelectedReSubmitResolution(currentResolution);
   };
 
   const handleViewResolution = () => {
-    handleOpenDialog({
-      type: DIALOG_TYPE.RESOLUTION_VIEW,
-      resolutions: resolutions,
-    });
+    setSelectedReSubmitResolution(currentResolution);
   };
 
   const handleShowToastSelectResolution = () => {

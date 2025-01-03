@@ -12,8 +12,9 @@ import { ResolutionTableRowActions } from "./ResolutionTableRowActions";
 import { ROLE } from "@/lib/constants";
 
 export default function getResolutionTableColumns(
+  role: ROLE,
   handleOpenDialog: (resolutionDialog: ResolutionDialog | undefined) => void,
-  role: ROLE
+  setSelectedReSubmitResolution: (resolution: Resolution | undefined) => void
 ) {
   const columns: ColumnDef<Resolution>[] = [
     {
@@ -98,7 +99,7 @@ export default function getResolutionTableColumns(
       ),
       cell: ({ row }) => (
         <div className="w-[100px]">
-          {getStatusBadge(row.getValue("status"))}
+          {getStatusBadge(row.getValue("status"), "")}
         </div>
       ),
       enableSorting: true,
@@ -116,11 +117,13 @@ export default function getResolutionTableColumns(
     },
     {
       id: "actions",
-      cell: ({ table }) => (
+      cell: ({ row, table }) => (
         <ResolutionTableRowActions
           table={table}
           role={role}
+          row={row}
           handleOpenDialog={handleOpenDialog}
+          setSelectedReSubmitResolution={setSelectedReSubmitResolution}
         />
       ),
     },
