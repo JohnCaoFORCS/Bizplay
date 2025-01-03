@@ -13,6 +13,8 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { CalendarDateRangePicker } from "@/components/CalendarDateRangePicker";
+import { useEffect, useState } from "react";
+import DropDownMenuStatusResolution from "@/components/menus/DropDownMenuStatusResolution";
 
 interface ResolutionTableViewOptionsProps<TData> {
   table: Table<TData>;
@@ -21,6 +23,16 @@ interface ResolutionTableViewOptionsProps<TData> {
 export function ResolutionTableViewOptions<TData>({
   table,
 }: ResolutionTableViewOptionsProps<TData>) {
+  const [selectedStatus, setSelectedStatus] = useState("All");
+
+  useEffect(() => {
+    if (selectedStatus === "All") {
+      table.resetGlobalFilter();
+    } else {
+      table.setGlobalFilter(selectedStatus);
+    }
+  }, [selectedStatus]);
+
   return (
     <div className="flex items-center justify-end gap-2">
       <CalendarDateRangePicker />
@@ -57,6 +69,10 @@ export function ResolutionTableViewOptions<TData>({
             })}
         </DropdownMenuContent>
       </DropdownMenu>
+      <DropDownMenuStatusResolution
+        selectedStatus={selectedStatus}
+        setSelectedStatus={setSelectedStatus}
+      />
     </div>
   );
 }

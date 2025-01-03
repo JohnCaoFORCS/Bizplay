@@ -84,7 +84,7 @@ export default function DialogEditResolution({
               <SelectContent>
                 <SelectItem value="Completed">Completed</SelectItem>
                 <SelectItem value="Rejected">Rejected</SelectItem>
-                <SelectItem value="In Progress">In Progress</SelectItem>
+                <SelectItem value="In process">In process</SelectItem>
                 <SelectItem value="Draft">Draft</SelectItem>
               </SelectContent>
             </Select>

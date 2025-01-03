@@ -15,7 +15,7 @@ export const resolutionTableData: Resolution[] = [
     userId: "2",
     createdAt: "2025-02-28",
     totalCash: 210000,
-    status: "In Progress",
+    status: "In process",
     approverId: "2",
     receiptId: "2",
   },

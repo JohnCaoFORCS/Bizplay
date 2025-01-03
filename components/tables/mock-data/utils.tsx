@@ -138,10 +138,10 @@ export const getStatusBadge = (status: string) => {
           Completed
         </Badge>
       );
-    case "In Progress":
+    case "In process":
       return (
         <Badge variant="outline" className="bg-yellow-500 text-white">
-          In Progress
+          In process
         </Badge>
       );
     case "Rejected":
